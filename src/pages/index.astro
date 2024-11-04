@@ -1,16 +1,13 @@
 ---
-import { DarkThemeToggle } from "flowbite-react";
+import {DarkThemeToggle} from "flowbite-react";
 import RootLayout from "../layouts/index.astro";
-
-
 ---
 
 <RootLayout title="Home">
-
-  <main
-    class="flex min-h-screen items-center justify-center gap-2 dark:bg-gray-800"
-  >
-    <h1 class="dark:text-white">Flowbite React + Astro</h1>
-    <DarkThemeToggle client:load />
-  </main>
+    <main
+            class="flex min-h-screen items-center justify-center gap-2 dark:bg-gray-800"
+    >
+        <h1 class="dark:text-white">Flowbite React + Astro</h1>
+        <DarkThemeToggle client:load/>
+    </main>
 </RootLayout>
