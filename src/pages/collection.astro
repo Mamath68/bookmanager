@@ -1,7 +1,32 @@
 ---
 import RootLayout from "../layouts/index.astro";
+import books from "../../public/api/books.json"
+
+interface Book {
+    id: string;
+    title: string;
+    type: string;
+    img: string;
+}
 ---
 
 <RootLayout title="Ma Collection">
-    <h1 class="dark:text-white">This is the About Page</h1>
+
+    <div class="space-y-4">
+        <h1 class="dark:text-white">Ma Collection de Livres</h1>
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {books.map((book) => (
+                    <div class="p-4 bg-white rounded shadow">
+                        <h2 class="mt-2">
+                            <a href={`/books/${book.id}`}>
+                                {book.title}
+                            </a>
+                        </h2>
+                        {book.img &&
+                                <img src={book.img} alt={`Couverture de ${book.title}`} class="mt-4 w-44 h-auto"/>
+                        }
+                    </div>
+            ))}
+        </div>
+    </div>
 </RootLayout>
