@@ -1,6 +1,6 @@
 ---
 import RootLayout from "../../layouts/index.astro";
-import books from "../../../public/api/books.json"
+import books from "../../../public/api/books.json";
 
 interface Book {
     id: string;
@@ -26,7 +26,6 @@ interface Book {
 
 // Charger les données JSON dans getStaticPaths de manière asynchrone
 export async function getStaticPaths() {
-
     return books.map((book: Book) => ({
         params: {id: book.id},
         props: {book}, // Passe le livre correspondant en tant que prop
@@ -42,283 +41,161 @@ if (!book) {
 ---
 
 <RootLayout title={book.title}>
-    <div class="mb-3 mt-8 flex min-h-[480px] flex-col md:flex-row">
-        <div class="w-full flex-grow p-12 md:w-3/10">
-            <div class="text-center md:text-start">
+    <div class="card-area" style="min-height: 410px;">
+        <div class="column1">
+            <div class="card-image">
                 <figure>
                     <img
+                            class="zoom"
                             src={book.img}
                             alt={book.title}
                             title={book.title}
-                            class="h-full min-h-[456.48px] w-full min-w-80 max-w-md rounded-2xl"
+                            loading="lazy"
                     />
                 </figure>
             </div>
         </div>
-        <div class="mt-[4%] w-full flex-grow p-3 md:w-7/10">
-            <div class="mb-4">
-                <h1 class="text-center underline dark:text-white">
-                    {book.title}
-                </h1>
+        <div class="column2">
+            <div class="card-name mb-3 dark:text-white">
+                <h1>{book.title}</h1>
             </div>
-            <ul class="grid max-w-[950px] grid-cols-2 gap-3 pl-0 md:grid-cols-3">
-                <li
-                        class="block min-w-40 list-none rounded-md bg-[#7d3e12] p-1.5 text-left text-white"
-                >
-          <span class="text-sm font-bold text-cyan-500 underline">
-            Auteur
-          </span>
-                    <span class="ml-0 flex items-center">
-            <a
-                    href="#"
-                    target="_blank"
-                    class="m-1 text-inherit no-underline hover:underline"
-            >
-              {book.author}
-            </a>
-          </span>
+
+            <ul class="card-data-info">
+                <li>
+                    <span class="card-data-header text-info fw-bold">Auteur</span>
+                    <span class="card-data-cost card-data-subheader">
+                        <i class="fa-solid fa-book"></i>
+                        <a href="#">{book.author}</a>
+                    </span>
                 </li>
                 {
                     book.original_author && (
-                                <li class="block min-w-40 list-none rounded-md bg-[#7d3e12] p-1.5 text-left text-white">
-              <span class="text-sm font-bold text-cyan-500 underline">
+                                <li>
+              <span class="card-data-header text-info fw-bold">
                 Histoire Original
               </span>
-                                    <span class="ml-0 flex items-center">
-                <a
-                        href="#"
-                        target="_blank"
-                        class="m-1 text-inherit no-underline hover:underline"
-                >
-                  {book.original_author}
-                </a>
+                                    <span class="card-data-cost card-data-subheader">
+                <a href="#"> {book.original_author}</a>
               </span>
                                 </li>
                     )
                 }
                 {
                     book.illustrator && (
-                                <li class="block min-w-40 list-none rounded-md bg-[#7d3e12] p-1.5 text-left text-white">
-              <span class="text-sm font-bold text-cyan-500 underline">
+                                <li>
+              <span class="card-data-header text-info fw-bold">
                 Illustrateur
               </span>
-                                    <span class="ml-0 flex items-center">
-                <a
-                        href="#"
-                        target="_blank"
-                        class="m-1 text-inherit no-underline hover:underline"
-                >
-                  {book.illustrator}
-                </a>
+                                    <span class="card-data-cost card-data-subheader">
+                <a href="#">{book.illustrator}</a>
               </span>
                                 </li>
                     )
                 }
-                <li
-                        class="block min-w-40 list-none rounded-md bg-[#7d3e12] p-1.5 text-left text-white"
-                >
-          <span class="text-sm font-bold text-cyan-500 underline">
-            Type de Livre
-          </span>
-                    <span class="ml-0 flex items-center">
-            <a
-                    href="#"
-                    target="_blank"
-                    class="m-1 text-inherit no-underline hover:underline"
-            >
-              {book.type}
-            </a>
+                <li>
+                    <span class="card-data-header text-info fw-bold">Type de Livre</span>
+                    <span class="card-data-cost card-data-subheader">
+            {book.type}
           </span>
                 </li>
-                <li
-                        class="block min-w-40 list-none rounded-md bg-[#7d3e12] p-1.5 text-left text-white"
-                >
-          <span class="text-sm font-bold text-cyan-500 underline">
-            Genre du Livre
-          </span>
-                    <span class="ml-0 flex items-center">
-            <a
-                    href="#"
-                    target="_blank"
-                    class="m-1 text-inherit no-underline hover:underline"
-            >
-              {book.genre}
-            </a>
+                <li>
+                    <span class="card-data-header text-info fw-bold">Genre du Livre</span>
+                    <span class="card-data-cost card-data-subheader">
+            <a href="#">{book.genre}</a>
           </span>
                 </li>
-                <li
-                        class="block min-w-40 list-none rounded-md bg-[#7d3e12] p-1.5 text-left text-white"
-                >
-          <span class="text-sm font-bold text-cyan-500 underline">
-            Publication Originel
-          </span>
-                    <span class="ml-0 flex items-center">
-            <a
-                    href="#"
-                    target="_blank"
-                    class="m-1 text-inherit no-underline hover:underline"
-            >
-              {book.published_vo}
-            </a>
+
+                <li>
+          <span class="card-data-header text-info fw-bold"
+          >Publication Originel</span
+          >
+                    <span class="card-data-cost card-data-subheader">
+            <i class="fa-solid fa-calendar-days"></i>
+            <a href="#">{book.published_vo}</a>
           </span>
                 </li>
-                <li
-                        class="block min-w-40 list-none rounded-md bg-[#7d3e12] p-1.5 text-left text-white"
-                >
-          <span class="text-sm font-bold text-cyan-500 underline">
-            Publication Française
-          </span>
-                    <span class="ml-0 flex items-center">
-            <a
-                    href="#"
-                    target="_blank"
-                    class="m-1 text-inherit no-underline hover:underline"
-            >
-              {book.published_vf}
-            </a>
+                <li>
+          <span class="card-data-header text-info fw-bold"
+          >Publication Française</span
+          >
+                    <span class="card-data-cost card-data-subheader">
+            <i class="fa-solid fa-calendar-days"></i>
+            <a href="#">{book.published_vf}</a>
           </span>
                 </li>
-                <li
-                        class="block min-w-40 list-none rounded-md bg-[#7d3e12] p-1.5 text-left text-white"
-                >
-          <span class="text-sm font-bold text-cyan-500 underline">
-            Dernière sortie Originel
-          </span>
-                    <span class="ml-0 flex items-center">
-            <a
-                    href="#"
-                    target="_blank"
-                    class="m-1 text-inherit no-underline hover:underline"
-            >
-              {book.end_publication_vo}
-            </a>
+                <li>
+          <span class="card-data-header text-info fw-bold"
+          >Dernière Publication Originel</span
+          >
+                    <span class="card-data-cost card-data-subheader">
+            <i class="fa-solid fa-calendar-days"></i>
+            <a href="#">{book.end_publication_vo}</a>
           </span>
                 </li>
-                <li
-                        class="block min-w-40 list-none rounded-md bg-[#7d3e12] p-1.5 text-left text-white"
-                >
-          <span class="text-sm font-bold text-cyan-500 underline">
-            Dernière Publication Française
-          </span>
-                    <span class="ml-0 flex items-center">
-            <a
-                    href="#"
-                    target="_blank"
-                    class="m-1 text-inherit no-underline hover:underline"
-            >
-              {book.end_publication_vf}
-            </a>
+                <li>
+          <span class="card-data-header text-info fw-bold"
+          >Dernière Publication Française</span
+          >
+                    <span class="card-data-cost card-data-subheader">
+            <i class="fa-solid fa-calendar-days"></i>
+            <a href="#">{book.end_publication_vf}</a>
           </span>
                 </li>
-                <li
-                        class="block min-w-40 list-none rounded-md bg-[#7d3e12] p-1.5 text-left text-white"
-                >
-          <span class="text-sm font-bold text-cyan-500 underline">
-            Quantité Possédé
-          </span>
-                    <span class="ml-0 flex items-center">
-            <a
-                    href="#"
-                    target="_blank"
-                    class="m-1 text-inherit no-underline hover:underline"
-            >
-              {book.quantite_possede}
-            </a>
+                <li>
+          <span class="card-data-header text-info fw-bold"
+          >Quantité Possédé</span
+          >
+                    <span class="card-data-cost card-data-subheader">
+            <a href="#">{book.quantite_possede}</a>
           </span>
                 </li>
-                <li
-                        class="block min-w-40 list-none rounded-md bg-[#7d3e12] p-1.5 text-left text-white"
-                >
-          <span class="text-sm font-bold text-cyan-500 underline">
-            Volumes Possédé
-          </span>
-                    <span class="ml-0 flex items-center">
-            <a
-                    href="#"
-                    target="_blank"
-                    class="m-1 text-inherit no-underline hover:underline"
-            >
-              {book.volumes_possede}
-            </a>
+
+                <li>
+          <span class="card-data-header text-info fw-bold">Volumes Possédé</span
+          >
+                    <span class="card-data-cost card-data-subheader">
+            <a href="#">{book.volumes_possede}</a>
           </span>
                 </li>
-                <li
-                        class="block min-w-40 list-none rounded-md bg-[#7d3e12] p-1.5 text-left text-white"
-                >
-          <span class="text-sm font-bold text-cyan-500 underline">
-            Volumes total sortie en VO
-          </span>
-                    <span class="ml-0 flex items-center">
-            <a
-                    href="#"
-                    target="_blank"
-                    class="m-1 text-inherit no-underline hover:underline"
-            >
-              {book.volumes_total_vo}
-            </a>
+                <li>
+          <span class="card-data-header text-info fw-bold"
+          >Volumes total sortie en VO</span
+          >
+                    <span class="card-data-cost card-data-subheader">
+            <a href="#">{book.volumes_total_vo}</a>
           </span>
                 </li>
-                <li
-                        class="block min-w-40 list-none rounded-md bg-[#7d3e12] p-1.5 text-left text-white"
-                >
-          <span class="text-sm font-bold text-cyan-500 underline">
-            Volumes total sortie en VF
-          </span>
-                    <span class="ml-0 flex items-center">
-            <a
-                    href="#"
-                    target="_blank"
-                    class="m-1 text-inherit no-underline hover:underline"
-            >
-              {book.volumes_total_vf}
-            </a>
+                <li>
+          <span class="card-data-header text-info fw-bold"
+          >Volumes total sortie en VF</span
+          >
+                    <span class="card-data-cost card-data-subheader">
+            <a href="#">{book.volumes_total_vf}</a>
           </span>
                 </li>
-                <li
-                        class="block min-w-40 list-none rounded-md bg-[#7d3e12] p-1.5 text-left text-white"
-                >
-          <span class="text-sm font-bold text-cyan-500 underline">
-            Status des publications en VO
-          </span>
-                    <span class="ml-0 flex items-center">
-            <a
-                    href="#"
-                    target="_blank"
-                    class="m-1 text-inherit no-underline hover:underline"
-            >
-              {book.status_vo}
-            </a>
+                <li>
+          <span class="card-data-header text-info fw-bold">
+            Status des publications en VO</span
+          >
+                    <span class="card-data-cost card-data-subheader">
+            <a href="#">{book.status_vo}</a>
           </span>
                 </li>
-                <li
-                        class="block min-w-40 list-none rounded-md bg-[#7d3e12] p-1.5 text-left text-white"
-                >
-          <span class="text-sm font-bold text-cyan-500 underline">
-            Status des publications en VF
-          </span>
-                    <span class="ml-0 flex items-center">
-            <a
-                    href="#"
-                    target="_blank"
-                    class="m-1 text-inherit no-underline hover:underline"
-            >
-              {book.status_vf}
-            </a>
+                <li>
+          <span class="card-data-header text-info fw-bold">
+            Status des publications en VF</span
+          >
+                    <span class="card-data-cost card-data-subheader">
+            <a href="#">{book.status_vf}</a>
           </span>
                 </li>
             </ul>
             {
                 book.commentaire && (
-                            <>
-                                <hr class="m-4"/>
-                                <div>
-                                    <p>
-                                        <strong>Monster Effect:</strong>
-                                        {book.commentaire}
-                                    </p>
-                                </div>
-                                <hr class="m-4"/>
-                            </>
+                            <div class="dark:text-white my-4">
+                                <h4>Petite Note</h4>
+                                <div class="card-text"> {book.commentaire}</div>
+                            </div>
                 )
             }
         </div>

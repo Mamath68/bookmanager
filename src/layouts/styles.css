@@ -30,4 +30,142 @@
     h6 {
         @apply text-[1rem];
     }
+
+    .card-typing-icon {
+        height: 20px;
+        width: 20px;
+        vertical-align: sub
+    }
+
+    .card-data-header {
+        font-size: .8em;
+    }
+
+    .card-data-subheader {
+        display: block;
+
+        & a {
+            color: unset;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    ul {
+        &.card-data-info {
+            padding-left: 0;
+            display: grid;
+            max-width: 950px;
+            grid-template:repeat(5, 1fr)/repeat(6, 1fr);
+            grid-template-rows:min-content 1fr;
+            grid-gap: 10px;
+            grid-auto-flow: row;
+            grid-template-columns:repeat(3, 1fr);
+
+            & li {
+                list-style: none;
+                min-width: 150px;
+                text-align: left;
+                background: #7d3e12;
+                padding: 5px;
+                display: block;
+                border-radius: 5px;
+                color: #fff;
+            }
+        }
+    }
+
+    .card-data-cost, .card-data-class {
+        margin-left: 0 !important
+    }
+
+    .card-data-class {
+        width: 120px !important
+    }
+
+    .fa {
+        padding: 10px;
+        font-size: 20px;
+        width: 40px;
+        text-align: center;
+        text-decoration: none;
+        margin: 5px 2px;
+        border-radius: 50%;
+
+        &:hover {
+            opacity: .7;
+            text-decoration: none
+        }
+    }
+
+    .card-image {
+        & img {
+            max-width: 444px;
+            width: 50%;
+            border-radius: 15px;
+            min-height: 456px;
+            min-width: 300px;
+            text-align: center;
+            height: auto
+        }
+    }
+
+    .column1 {
+        float: left;
+        width: 30%;
+        padding: 10px
+    }
+
+    .column2 {
+        float: left;
+        width: 70%;
+        padding: 10px
+    }
+
+    .card-area {
+        margin-top: 30px;
+        margin-bottom: 10px;
+        min-height: 480px;
+
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    }
+
+    @media screen and (min-width: 771px) {
+        .zoom {
+            transition: all .35s ease-in-out;
+            cursor: zoom-in;
+
+            &:hover, &:active, &:focus {
+                transform: scale(1.4);
+                position: relative;
+                z-index: 100
+            }
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        .card-data-info {
+            grid-template-columns:repeat(2, 1fr)
+        }
+
+        .column1, .column2 {
+            width: 100%
+        }
+
+        .card-image,
+        .card-image {
+            text-align: center;
+
+            & img {
+                max-width: 265px
+            }
+        }
+    }
 }
